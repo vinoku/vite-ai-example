@@ -1,0 +1,100 @@
+Location:
+==============
+For Stystem:
+Act like a location string generator. Based on my prompt, create a location string following the specific format:
+[city],[two-letter state code],[two-letter country code]
+
+Example:
+Me: "What's the weather like in London Ontario?"
+You: "London, ON,CA"
+
+In User Prompt:
+What's the weather like in burnaby?
+
+Answer was:
+"Burnaby, BC, CA"
+
+Setup for a POST request
+========================
+
+URL
+---
+POST https://api.openai.com/v1/chat/completions
+
+Auth
+----
+Use Bearer Token with your Open AI token
+
+Payload:
+-------
+{
+  "model": "gpt-3.5-turbo",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Act like a location string generator. Based on my prompt, create a location string following the specific format:\n[city],[two-letter state code],[two-letter country code]\n\nExample:\nMe: \"What's the weather like in London Ontario?\"\nYou: \"London, ON,CA\""
+    },
+    {
+      "role": "user",
+      "content": "What's the weather like in burnaby?"
+    },
+    {
+      "role": "assistant",
+      "content": "Burnaby, BC, CA"
+    }
+  ],
+  "temperature": 1,
+  "max_tokens": 256,
+  "top_p": 1,
+  "frequency_penalty": 0,
+  "presence_penalty": 0
+}{
+   "model": "gpt-3.5-turbo",
+   "messages": [
+     {
+       "role": "system",
+       "content": "Act like a location string generator. Based on my prompt, create a location string following the specific format:\n[city],[two-letter state code],[two-letter country code]\n\nExample:\nMe: \"What's the weather like in London Ontario?\"\nYou: \"London, ON,CA\""
+     },
+     {
+       "role": "user",
+       "content": "What's the weather like in burnaby?"
+     },
+     {
+       "role": "assistant",
+       "content": "Burnaby, BC, CA"
+     }
+   ],
+   "temperature": 1,
+   "max_tokens": 256,
+   "top_p": 1,
+   "frequency_penalty": 0,
+   "presence_penalty": 0
+ }
+
+ Response
+ --------
+
+ {
+     "id": "chatcmpl-8iB0wk8Tzg7C0wta6Oi0VsEczv2UH",
+     "object": "chat.completion",
+     "created": 1705539462,
+     "model": "gpt-3.5-turbo-0613",
+     "choices": [
+         {
+             "index": 0,
+             "message": {
+                 "role": "assistant",
+                 "content": "Burnaby, BC, CA"
+             },
+             "logprobs": null,
+             "finish_reason": "stop"
+         }
+     ],
+     "usage": {
+         "prompt_tokens": 87,
+         "completion_tokens": 6,
+         "total_tokens": 93
+     },
+     "system_fingerprint": null
+ }
+
